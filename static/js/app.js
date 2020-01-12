@@ -1,3 +1,13 @@
+const metadata_url = "http://localhost:8000/metadata/940";
+d3.json(metadata_url).then(function(data) {
+   console.log(data);
+})
+
+var sample_metadata = d3.select("#sample-metadata");
+
+d3.select("#sample-metadata").html("");
+sample_metadata.html("");
+
 function buildCharts(sample) {
 
     d3.json(`/samples/${sample}`).then(d => {
@@ -38,9 +48,10 @@ function buildCharts(sample) {
 
         Plotly.newPlot('bubble', data2, layout2)
     });
+    
 }
 
-function buildMetadata(sample) {
+function buildMetadata(metadata) {
 
     d3.json(`/samples/${metadata}`).then( d => {
         var sample_metadata = d3.select("#sample-metadata");
@@ -51,4 +62,5 @@ function buildMetadata(sample) {
             paragraph.text(`${key}: ${value}`);
         });
     });
+
 }
