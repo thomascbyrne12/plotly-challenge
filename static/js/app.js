@@ -1,16 +1,6 @@
-const metadata_url = "http://localhost:8000/metadata/940";
-d3.json(metadata_url).then(function(data) {
-   console.log(data);
-})
-
-var sample_metadata = d3.select("#sample-metadata");
-
-d3.select("#sample-metadata").html("");
-sample_metadata.html("");
-
 function buildCharts(sample) {
 
-    d3.json(`/samples/${sample}`).then(d => {
+    d3.json('data/samples.json').then(d => {
         var trace1 = {
             ticks: d.otu_ids,
             bars: d.sample_values,
@@ -53,7 +43,7 @@ function buildCharts(sample) {
 
 function buildMetadata(metadata) {
 
-    d3.json(`/samples/${metadata}`).then( d => {
+    d3.json('data/samples.json').then( d => {
         var sample_metadata = d3.select("#sample-metadata");
         sample_metadata.html("");
 
